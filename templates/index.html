@@ -15,7 +15,7 @@
                 <div id="actual-list">
                 {% for list in lists %}
                     <div class="todo-list">
-                        <label for="item{{list.id}}"><a href="/todo_lists/{{list.id}}"> {{list.list_name}}</a></label>
+                        <label for="item{{list.id}}"><a class="href_tag" href="/todo_lists/{{list.id}}"> {{list.list_name}}</a></label>
                     </div>
                 {% endfor %}
                 </div>

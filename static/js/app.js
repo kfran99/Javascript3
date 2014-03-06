@@ -7,28 +7,38 @@ $(document).ready(function(){
             method: "POST",
             data: $("form#todo_list_form").serialize()
         }).done(function(data){
-            //alert(data);
             $("#actual-list").html(data);
         }).fail(function(){
             alert('fail!!!');
         });
     });
-    $("#form_submit2").on("click", function(event){
+
+    $(".href_tag").on("click", function(event){
         event.preventDefault();
         $.ajax({
-            url: "/todo_lists/" + $("#todoId").val(),
-            method: "POST",
-            data: $("form#todo-item-form").serialize()
+            url:this.href,
+            method: "GET"
         }).done(function(data){
-            //alert(data);
-            $("#actual-items").html(data);
-        }).fail(function(){
-            alert('fail!!!');
+            $(".container").html(data);
+            $("#form_submit2").on("click", function(event){
+                event.preventDefault();
+                console.log("not yay");
+                $.ajax({
+                    url:"/todo_lists/" + $("#todoId").val(),
+                    method: "POST",
+                    data: $("form#todo-item-form").serialize()
+                }).done(function(data){
+                    event.preventDefault();
+                    $("#actual-items").html(data);
+                }).fail(function(){
+                    alert('fail!!!');
+                });
+            });
+            $("#link_button").on("click", function(event){
+                event.preventDefault();
+                location.replace('/?2');
+            });
         });
-    });
-    $("#link_button").on("click", function(event){
-        event.preventDefault();
-        location.replace('/');
     });
 
 });
@@ -41,8 +51,4 @@ var getListsFromServer = function() {
         $("#actual-list").html(data);
     });
 };
-
-
-
-
 

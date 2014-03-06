@@ -25,25 +25,12 @@ def index_post():
     return render_template("todo_list_partial.html", lists=lists)
     
 
-    return redirect('/')
-
-#@app.route('/ajax/main_list', methods=['GET'])
-# def ajax_todo():
-#     list_name = request.form.get('todo_list_name')
-#     if not list_name:
-#         return "Invalid List Name"
-
-#     todo_lists.insert(dict(list_name=list_name))
-
-#     return list_name
-
-
 @app.route('/todo_lists/<int:id>')
 def todo_list_show(id):
     items = todo_item_table.find(todo_list_id=id)
     items = [x for x in items]
 
-    return render_template("todo_list.html", items=items, id=id)
+    return render_template("todo_items_partial.html", items=items, id=id)
 
 @app.route('/todo_lists/<int:id>', methods=["POST"])
 def todo_item_create(id):
@@ -53,7 +40,7 @@ def todo_item_create(id):
     #return all of the items for given list
     items = todo_item_table.find(todo_list_id=id)
     items = [x for x in items] 
-    return render_template("todo_items_partial.html", items=items)
+    return render_template("todo-partial-martial.html", items=items)
 
 
 @app.route('/todo_lists/poll')
